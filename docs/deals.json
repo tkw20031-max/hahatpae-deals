@@ -1,0 +1,70 @@
+{
+  "updatedAt": "2026-11-27T00:51:39.340661+09:00",
+  "count": 4,
+  "deals": [
+    {
+      "id": "222933941",
+      "mall": "toss",
+      "displayName": "다모아 두피 브러쉬 마사지기, 1개",
+      "displayPrice": 39900,
+      "originalPrice": 209000,
+      "discountRate": 80,
+      "shortUrl": "https://toss.shopping/_m/pdpXyVvp",
+      "source": "today-deals",
+      "score": 88.4,
+      "thumbnailUrl": "https://shopping.toss.im/live/temp/2026-03-05/757d97ec-7390-42cb-bd86-d3a61d30b4d0.jpeg",
+      "reviewScore": 4.6,
+      "reviewCount": 688,
+      "isLowestPrice30d": false,
+      "createdAt": "2026-11-27T00:10:00.081522+09:00"
+    },
+    {
+      "id": "147965883",
+      "mall": "toss",
+      "displayName": "앙쥬 24K 골드 스킨케어 8종세트, 쇼핑백 증정, 1세트",
+      "displayPrice": 35900,
+      "originalPrice": 699000,
+      "discountRate": 94,
+      "shortUrl": "https://toss.shopping/_m/R2eJcxvw",
+      "source": "today-deals",
+      "score": 90.7,
+      "thumbnailUrl": "https://shopping.toss.im/live/temp/2026-09-11/48787df6-2666-4e32-8bc9-c74ead3bf294.png",
+      "reviewScore": 4.7,
+      "reviewCount": 1580,
+      "isLowestPrice30d": false,
+      "createdAt": "2026-11-27T00:09:07.121270+09:00"
+    },
+    {
+      "id": "2658087741",
+      "mall": "toss",
+      "displayName": "란센 초음파 렌즈세척기, BPL-04, 화이트, 1개",
+      "displayPrice": 9900,
+      "originalPrice": 59000,
+      "discountRate": 83,
+      "shortUrl": "https://toss.shopping/_m/RBWyKhvw",
+      "source": "today-deals",
+      "score": 91.2,
+      "thumbnailUrl": "https://shopping.toss.im/live/temp/2026-09-17/07401430-f927-404f-992f-ef2c92a0d715.jpeg",
+      "reviewScore": 4.5,
+      "reviewCount": 612,
+      "isLowestPrice30d": true,
+      "createdAt": "2026-11-27T00:08:13.463820+09:00"
+    },
+    {
+      "id": "119672207",
+      "mall": "toss",
+      "displayName": "더건강플러스 엑스트라버진 올리브오일, 1L, 1개",
+      "displayPrice": 12700,
+      "originalPrice": 39800,
+      "discountRate": 68,
+      "shortUrl": "https://toss.shopping/_m/FdvdG6tA",
+      "source": "today-deals",
+      "score": 95.0,
+      "thumbnailUrl": "https://shopping.toss.im/live/temp/2026-11-17/eeffb492-31ed-4b61-a350-426926c3e870.png",
+      "reviewScore": 4.7,
+      "reviewCount": 12244,
+      "isLowestPrice30d": false,
+      "createdAt": "2026-11-27T00:04:16.321564+09:00"
+    }
+  ]
+}
