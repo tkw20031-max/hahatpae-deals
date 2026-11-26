@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <title>하핫패 | 하루특가•핫딜•패션 — 실시간 역대가 보드</title>
+  <meta name="description" content="매일 자정 00:01 토스 하루특가·30일 최저가·네이버·무신사 역대가만 선별해 실시간 업데이트합니다." />
+  <meta property="og:title" content="하핫패 | 하루특가•핫딜•패션 실시간 핫딜 보드" />
+  <meta property="og:description" content="매일 00:01 · 12:00 · 19:00 품절 임박 초특가·30일 최저가 실시간 업데이트 🔥" />
+  <style>
+    :root {
+      --bg: #f6f7f9;
+      --card: #ffffff;
+      --text: #14171a;
+      --muted: #65707d;
+      --line: #e8ecf0;
+      --accent: #3182f6;
+      --accent-dark: #1b64da;
+      --hot: #f04452;
+      --hot-bg: #fff0f1;
+      --lowest: #059669;
+      --lowest-bg: #ecfdf5;
+      --kakao: #fee500;
+      --kakao-text: #191919;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Pretendard", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.45;
+      -webkit-font-smoothing: antialiased;
+    }
+    .wrap { max-width: 680px; margin: 0 auto; padding: 14px 14px 48px; }
+    .hero {
+      background: linear-gradient(135deg, #111827 0%, #1e293b 100%);
+      color: #fff;
+      border-radius: 18px;
+      padding: 20px 18px;
+      margin-bottom: 12px;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.12);
+    }
+    .hero-top { display: flex; justify-content: space-between; align-items: center; gap: 8px; flex-wrap: wrap; }
+    .brand-title { font-size: 20px; font-weight: 800; letter-spacing: -0.02em; }
+    .brand-tag { font-size: 12px; color: #cbd5e1; margin-top: 4px; }
+    .live-pill {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(255,255,255,0.12); padding: 4px 10px; border-radius: 999px;
+      font-size: 11px; font-weight: 600; color: #f8fafc;
+    }
+    .dot { width: 7px; height: 7px; border-radius: 50%; background: #22c55e; display: inline-block; }
+    .cta-row { display: flex; gap: 8px; margin-top: 14px; flex-wrap: wrap; }
+    .cta-pill {
+      flex: 1; min-width: 135px; text-align: center; text-decoration: none;
+      padding: 10px 12px; border-radius: 12px; font-size: 13px; font-weight: 700;
+      transition: transform 0.12s ease;
+    }
+    .cta-pill:active { transform: scale(0.98); }
+    .cta-pill.kakao { background: var(--kakao); color: var(--kakao-text); }
+    .cta-pill.threads { background: rgba(255,255,255,0.14); color: #fff; border: 1px solid rgba(255,255,255,0.2); }
+    .notice {
+      background: #fff; border: 1px solid var(--line); border-radius: 12px;
+      padding: 10px 12px; font-size: 11.5px; color: var(--muted); margin-bottom: 12px;
+    }
+    .controls { display: flex; flex-direction: column; gap: 8px; margin-bottom: 14px; }
+    .search {
+      width: 100%; padding: 11px 14px; border: 1px solid var(--line); border-radius: 12px;
+      background: #fff; font-size: 14px; outline: none;
+    }
+    .search:focus { border-color: var(--accent); }
+    .tabs { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 2px; scrollbar-width: none; }
+    .tabs::-webkit-scrollbar { display: none; }
+    .tab {
+      border: 1px solid var(--line); background: #fff; color: var(--muted);
+      padding: 7px 13px; border-radius: 999px; font-size: 12.5px; font-weight: 700;
+      cursor: pointer; white-space: nowrap;
+    }
+    .tab.active { background: #111827; color: #fff; border-color: #111827; }
+    .grid { display: flex; flex-direction: column; gap: 12px; }
+    .card {
+      background: var(--card); border: 1px solid var(--line); border-radius: 16px;
+      padding: 14px; display: flex; gap: 13px; align-items: stretch;
+      box-shadow: 0 2px 10px rgba(15, 23, 42, 0.04);
+    }
+    .thumb {
+      width: 104px; height: 104px; flex-shrink: 0; border-radius: 12px;
+      object-fit: cover; background: #f1f5f9; border: 1px solid var(--line);
+    }
+    .info { flex: 1; min-width: 0; display: flex; flex-direction: column; justify-content: space-between; }
+    .badges { display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: 5px; }
+    .badge {
+      font-size: 11px; font-weight: 700; padding: 2px 7px; border-radius: 6px;
+    }
+    .badge.hot { background: var(--hot-bg); color: var(--hot); }
+    .badge.lowest { background: var(--lowest-bg); color: var(--lowest); }
+    .badge.mall { background: #eff6ff; color: var(--accent); }
+    .name {
+      font-size: 14.5px; font-weight: 700; color: var(--text);
+      display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+      margin-bottom: 6px;
+    }
+    .price-row { display: flex; align-items: baseline; gap: 6px; flex-wrap: wrap; }
+    .discount { font-size: 17px; font-weight: 800; color: var(--hot); }
+    .sale { font-size: 17px; font-weight: 800; color: var(--text); }
+    .orig { font-size: 12px; color: #9aa5b1; text-decoration: line-through; }
+    .meta { font-size: 11.5px; color: var(--muted); margin-top: 3px; }
+    .buy-btn {
+      display: block; text-align: center; text-decoration: none;
+      margin-top: 10px; padding: 9px 12px; border-radius: 10px;
+      background: var(--accent); color: #fff; font-size: 13px; font-weight: 700;
+    }
+    .buy-btn:hover { background: var(--accent-dark); }
+    .empty {
+      text-align: center; padding: 40px 16px; color: var(--muted);
+      background: #fff; border-radius: 16px; border: 1px dashed var(--line); font-size: 14px;
+    }
+    footer { text-align: center; font-size: 11.5px; color: var(--muted); margin-top: 24px; line-height: 1.6; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="hero">
+      <div class="hero-top">
+        <div>
+          <div class="brand-title">🔥 하핫패 실시간 핫딜</div>
+          <div class="brand-tag">하루특가•핫딜•패션 · 매일 00:01 / 12:00 / 19:00 자동 업데이트</div>
+        </div>
+        <div class="live-pill"><span class="dot"></span>2026.11.27 00:51 갱신</div>
+      </div>
+      <div class="cta-row">
+        <a class="cta-pill kakao" href="https://open.kakao.com/o/grlVcQYi" target="_blank" rel="noopener">💬 오픈카톡 알림방</a>
+        <a class="cta-pill threads" href="https://www.threads.com/@hahat_deal" target="_blank" rel="noopener">🧵 쓰레드 @hahat_deal</a>
+      </div>
+    </header>
+
+    <div class="notice">
+      ※ 토스쇼핑 쉐어링크 활동 수수료를 받아요(가격영향X) · 선착순·하루특가 상품은 실시간으로 가격 변동 또는 조기 품절될 수 있습니다.
+    </div>
+
+    <div class="controls">
+      <input id="searchInput" class="search" type="search" placeholder="찾으시는 특가 상품명 검색 (예: 올리브오일, 생수, 이어폰)" />
+      <div class="tabs" id="filterTabs">
+        <button class="tab active" data-filter="all">전체 (4)</button>
+        <button class="tab" data-filter="lowest">🔥 30일 내 최저가</button>
+        <button class="tab" data-filter="today">⏰ 토스 하루특가</button>
+        <button class="tab" data-filter="naver">🟢 네이버 특가</button>
+        <button class="tab" data-filter="musinsa">⚫ 무신사 세일</button>
+      </div>
+    </div>
+
+    <main id="dealGrid" class="grid"></main>
+
+    <footer>
+      <strong>하핫패 | 하루특가•핫딜•패션</strong><br />
+      ※ 본 페이지의 상품 링크는 토스쇼핑 쉐어링크 등 제휴 활동의 일환으로 일정 수수료를 제공받습니다 (구매 가격 영향 X).
+    </footer>
+  </div>
+
+  <script>
+    const DEALS = [{"id": "222933941", "mall": "toss", "displayName": "다모아 두피 브러쉬 마사지기, 1개", "displayPrice": 39900, "originalPrice": 209000, "discountRate": 80, "shortUrl": "https://toss.shopping/_m/pdpXyVvp", "source": "today-deals", "score": 88.4, "thumbnailUrl": "https://shopping.toss.im/live/temp/2026-03-05/757d97ec-7390-42cb-bd86-d3a61d30b4d0.jpeg", "reviewScore": 4.6, "reviewCount": 688, "isLowestPrice30d": false, "createdAt": "2026-11-27T00:10:00.081522+09:00"}, {"id": "147965883", "mall": "toss", "displayName": "앙쥬 24K 골드 스킨케어 8종세트, 쇼핑백 증정, 1세트", "displayPrice": 35900, "originalPrice": 699000, "discountRate": 94, "shortUrl": "https://toss.shopping/_m/R2eJcxvw", "source": "today-deals", "score": 90.7, "thumbnailUrl": "https://shopping.toss.im/live/temp/2026-09-11/48787df6-2666-4e32-8bc9-c74ead3bf294.png", "reviewScore": 4.7, "reviewCount": 1580, "isLowestPrice30d": false, "createdAt": "2026-11-27T00:09:07.121270+09:00"}, {"id": "2658087741", "mall": "toss", "displayName": "란센 초음파 렌즈세척기, BPL-04, 화이트, 1개", "displayPrice": 9900, "originalPrice": 59000, "discountRate": 83, "shortUrl": "https://toss.shopping/_m/RBWyKhvw", "source": "today-deals", "score": 91.2, "thumbnailUrl": "https://shopping.toss.im/live/temp/2026-09-17/07401430-f927-404f-992f-ef2c92a0d715.jpeg", "reviewScore": 4.5, "reviewCount": 612, "isLowestPrice30d": true, "createdAt": "2026-11-27T00:08:13.463820+09:00"}, {"id": "119672207", "mall": "toss", "displayName": "더건강플러스 엑스트라버진 올리브오일, 1L, 1개", "displayPrice": 12700, "originalPrice": 39800, "discountRate": 68, "shortUrl": "https://toss.shopping/_m/FdvdG6tA", "source": "today-deals", "score": 95.0, "thumbnailUrl": "https://shopping.toss.im/live/temp/2026-11-17/eeffb492-31ed-4b61-a350-426926c3e870.png", "reviewScore": 4.7, "reviewCount": 12244, "isLowestPrice30d": false, "createdAt": "2026-11-27T00:04:16.321564+09:00"}];
+    let currentFilter = 'all';
+    const grid = document.getElementById('dealGrid');
+    const searchInput = document.getElementById('searchInput');
+
+    function esc(s) {
+      return String(s || '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+    }
+
+    function fmtWon(n) {
+      return Number(n || 0).toLocaleString('ko-KR') + '원';
+    }
+
+    function timeLabel(iso) {
+      if (!iso) return '';
+      const d = new Date(iso);
+      if (isNaN(d.getTime())) return '';
+      const mm = String(d.getMonth() + 1).padStart(2, '0');
+      const dd = String(d.getDate()).padStart(2, '0');
+      const hh = String(d.getHours()).padStart(2, '0');
+      const mi = String(d.getMinutes()).padStart(2, '0');
+      return `${mm}/${dd} ${hh}:${mi} 등록`;
+    }
+
+    function render() {
+      const q = (searchInput.value || '').trim().toLowerCase();
+      const list = DEALS.filter(item => {
+        if (q && !(item.displayName || '').toLowerCase().includes(q)) return false;
+        if (currentFilter === 'lowest') return Boolean(item.isLowestPrice30d);
+        if (currentFilter === 'today') return item.source === 'today-deals';
+        if (currentFilter === 'naver') return item.mall === 'naver';
+        if (currentFilter === 'musinsa') return item.mall === 'musinsa';
+        return true;
+      });
+
+      if (list.length === 0) {
+        grid.innerHTML = '<div class="empty">현재 조건에 맞는 특가 상품이 없습니다.<br/>곧 다음 타임 특가가 자동 업데이트됩니다 🔥</div>';
+        return;
+      }
+
+      grid.innerHTML = list.map(item => {
+        const mallName = item.mall === 'naver' ? '네이버' : (item.mall === 'musinsa' ? '무신사' : '토스쇼핑');
+        const badges = [
+          `<span class="badge mall">${mallName}</span>`,
+          item.source === 'today-deals' ? '<span class="badge hot">하루특가</span>' : '',
+          item.isLowestPrice30d ? '<span class="badge lowest">30일 최저가</span>' : ''
+        ].filter(Boolean).join('');
+
+        const origHtml = item.originalPrice > item.displayPrice
+          ? `<span class="orig">${fmtWon(item.originalPrice)}</span>` : '';
+        const discHtml = item.discountRate > 0
+          ? `<span class="discount">${item.discountRate}%</span>` : '';
+        const reviewHtml = item.reviewCount > 0
+          ? `★ ${Number(item.reviewScore).toFixed(1)} (리뷰 ${Number(item.reviewCount).toLocaleString('ko-KR')}개) · ` : '';
+        const imgTag = item.thumbnailUrl
+          ? `<img class="thumb" src="${esc(item.thumbnailUrl)}" alt="${esc(item.displayName)}" loading="lazy" />`
+          : `<div class="thumb"></div>`;
+
+        return `
+          <article class="card">
+            ${imgTag}
+            <div class="info">
+              <div>
+                <div class="badges">${badges}</div>
+                <div class="name">${esc(item.displayName)}</div>
+                <div class="price-row">
+                  ${discHtml}
+                  <span class="sale">${fmtWon(item.displayPrice)}</span>
+                  ${origHtml}
+                </div>
+                <div class="meta">${reviewHtml}${timeLabel(item.createdAt)}</div>
+              </div>
+              <a class="buy-btn" href="${esc(item.shortUrl)}" target="_blank" rel="noopener">🛒 최저가 바로가기</a>
+            </div>
+          </article>
+        `;
+      }).join('');
+    }
+
+    document.getElementById('filterTabs').addEventListener('click', e => {
+      const btn = e.target.closest('.tab');
+      if (!btn) return;
+      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      btn.classList.add('active');
+      currentFilter = btn.dataset.filter;
+      render();
+    });
+    searchInput.addEventListener('input', render);
+    render();
+  </script>
+</body>
+</html>
